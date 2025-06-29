@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  django:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    command: sh -c "python manage.py migrate && gunicorn root.wsgi:application --bind 0.0.0.0:8000"
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/usr/src/app
+    env_file:
+      - .env
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - .env.db
+
+volumes:
+  app:
+  postgres_data:
