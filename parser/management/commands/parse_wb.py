@@ -30,7 +30,6 @@ class Command(BaseCommand):
                 break
 
             for p in items:
-                print(p)
                 total += 1
                 Product.objects.update_or_create(
                     wb_id=p["id"],
@@ -46,5 +45,5 @@ class Command(BaseCommand):
             page += 1
             if not o["all"]:
                 break
-            time.sleep(0.4)  # не спамить API
+            time.sleep(0.4)
         self.stdout.write(self.style.SUCCESS(f"Итого добавлено/обновлено: {total}"))
