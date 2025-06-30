@@ -14,6 +14,14 @@ pip install -r requirements.txt
 ```shell
 python manage.py migrate
 ```
+для запуска парсера
+```shell
+python3 manage.py parse_wb "пуховик"
+```
+для парсинга всех единиц определенной категории
+```shell
+python3 manage.py parse_wb "пуховик" "--all"
+```
 
 для запуска приложения
 ```shell
